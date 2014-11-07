@@ -1,0 +1,90 @@
+Tweet Object fields
+  https://dev.twitter.com/overview/api/tweets
+
+  Anonymized:
+    - entities    
+    - id
+    - id_str
+    - in_reply_to_screen_name
+    - in_reply_to_status_id',
+    - in_reply_to_status_id_str
+    - in_reply_to_user_id
+    - in_reply_to_user_id_str
+    - text
+    - user
+
+  Kept:
+    - created_at
+    - favorite_count
+    - lang
+    - possibly_sensitive
+    - retweet_count
+    - scopes
+    - truncated
+    - source
+
+  Removed:
+    - annotations
+    - contributors
+    - coordinates
+    - current_user_retweet
+    - filter_level
+    - geo
+    - place
+    - retweeted_status
+    - withheld_copyright
+    - withheld_in_countries
+    - withheld_scope
+
+
+User Object fields
+  https://dev.twitter.com/overview/api/users
+
+  Anonymized:
+    - id
+    - id_str
+
+  Kept: 
+    - created_at
+    - favourites_count
+    - followers_count
+    - friends_count
+    - geo_enabled
+    - lang
+    - listed_count
+    - statuses_count
+    - time_zone
+    - utc_offset
+    - verified
+
+  Removed:
+    - contributors_enabled
+    - default_profile
+    - default_profile_image
+    - description
+    - entities
+    - follow_request_sent
+    - following
+    - is_translator
+    - location
+    - name
+    - notifications
+    - profile_background_color
+    - profile_background_image_url
+    - profile_background_image_url_https
+    - profile_background_tile
+    - profile_banner_url
+    - profile_image_url
+    - profile_image_url_https
+    - profile_link_color
+    - profile_sidebar_border_color
+    - profile_sidebar_fill_color
+    - profile_text_color
+    - profile_use_background_image
+    - protected
+    - screen_name
+    - show_all_inline_media
+    - status
+    - url
+    - withheld_in_countries
+    - withheld_scope
