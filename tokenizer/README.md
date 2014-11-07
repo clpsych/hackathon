@@ -4,7 +4,7 @@ Tokenizer
 Compile:
 
 * Install gradle
-* run `gradle build`
+* run `gradle fatJar`
 
 Run:
 
