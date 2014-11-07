@@ -88,3 +88,35 @@ User Object fields
     - url
     - withheld_in_countries
     - withheld_scope
+
+
+Entity Object fields
+  https://dev.twitter.com/overview/api/entities
+
+  Anonymized:
+  - media
+  - urls
+  - user_mentions
+
+  Kept:
+  - hashtags
+
+
+Entity Media Object fields
+  https://dev.twitter.com/overview/api/entities#obj-media
+
+  Anonymized:
+  - display_url
+  - expanded_url
+  - id
+  - id_str
+  - media_url
+  - media_url_https
+  - source_status_id
+  - source_status_id_str
+  - url
+
+  Kept:
+  - indices
+  - sizes
+  - type
