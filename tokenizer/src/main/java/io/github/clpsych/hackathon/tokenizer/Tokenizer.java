@@ -28,7 +28,7 @@ public class Tokenizer {
 	public static ObjectMapper mapper = new ObjectMapper();
 	
 
-  public static void tokenizeTweets(Reader in, Writer out) throws JsonParseException, IOException {
+  public static void tokenizeTweets(Reader in, PrintWriter out) throws JsonParseException, IOException {
 	JsonParser parser = mapper.getJsonFactory().createJsonParser(in);
 	
 	while (parser.nextToken() != null) {
@@ -37,7 +37,7 @@ public class Tokenizer {
 		List<String> tokenized = Twokenize.tokenize(text);
 		String joined = Joiner.on(" ").join(tokenized);
 		tweet.put("tokenized_text", joined);
-		mapper.writeValue(out, tweet);
+		out.println(mapper.writeValueAsString(tweet));
 	}
   }
   
@@ -50,8 +50,9 @@ public class Tokenizer {
     			throws IOException {
     		FileReader in = new FileReader(file.toFile());
     		Path outPath = outRoot.resolve(inRoot.relativize(file));
+    		System.out.println(file + " -> " + outPath);
     		outPath.getParent().toFile().mkdirs();
-    		FileWriter out = new FileWriter(outPath.toFile());
+    		PrintWriter out = new PrintWriter(new FileWriter(outPath.toFile()));
     		tokenizeTweets(in, out);
     		in.close();
     		out.close();

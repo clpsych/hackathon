@@ -14,4 +14,13 @@ dependencies {
 jar {
   baseName = 'clsych-hackathon-tokenizer'
   version =  '0.0.1'
+    manifest {
+        attributes 'Main-Class': 'io.github.clpsych.hackathon.tokenizer.Tokenizer'
+    }
+}
+
+task fatJar(type: Jar) {
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
