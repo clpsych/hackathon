@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+dependencies {
+  compile "edu.cmu.cs:ark-tweet-nlp:0.3.2"
+  compile "com.google.guava:guava:18.0"
+}
+
+jar {
+  baseName = 'clsych-hackathon-tokenizer'
+  version =  '0.0.1'
+}
