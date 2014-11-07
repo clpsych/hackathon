@@ -12,7 +12,7 @@ dependencies {
 }
 
 jar {
-  baseName = 'clsych-hackathon-tokenizer'
+  baseName = 'clpsych-hackathon-tokenizer'
   version =  '0.0.1'
     manifest {
         attributes 'Main-Class': 'io.github.clpsych.hackathon.tokenizer.Tokenizer'
