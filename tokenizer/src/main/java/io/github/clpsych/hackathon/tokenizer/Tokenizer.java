@@ -13,10 +13,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cmu.arktweetnlp.Tagger;
+import cmu.arktweetnlp.Tagger.TaggedToken;
 import cmu.arktweetnlp.Twokenize;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -26,7 +29,10 @@ import com.google.common.base.Joiner;
 
 public class Tokenizer {
 	public static ObjectMapper mapper = new ObjectMapper();
+	public static Tagger tagger;
 	
+	public static boolean doTokenize = true;
+	public static boolean doTag = true;
 
   public static void tokenizeTweets(Reader in, PrintWriter out) throws JsonParseException, IOException {
 	JsonParser parser = mapper.getJsonFactory().createJsonParser(in);
@@ -34,16 +40,35 @@ public class Tokenizer {
 	while (parser.nextToken() != null) {
 		Map<String, Object> tweet = parser.readValueAs(HashMap.class);
 		String text = (String) tweet.get("text");
-		List<String> tokenized = Twokenize.tokenize(text);
-		String joined = Joiner.on(" ").join(tokenized);
-		tweet.put("tokenized_text", joined);
+		
+		if (doTokenize) {
+			List<String> tokenized = Twokenize.tokenize(text);
+			tweet.put("tokenized_text", Joiner.on(" ").join(tokenized));
+		}
+		
+		if (doTag) {
+			List<TaggedToken> taggedTokens = tagger.tokenizeAndTag(text);
+			List<String> taggedTokenStrings = new ArrayList<String>(taggedTokens.size());
+			for (TaggedToken token : taggedTokens) {
+				taggedTokenStrings.add(token.token + "/" + token.tag);
+			}
+			tweet.put("tagged_text", Joiner.on(" ").join(taggedTokenStrings));
+		}
 		out.println(mapper.writeValueAsString(tweet));
 	}
   }
   
+  
+  
   public static void main(String[] args) throws JsonParseException, FileNotFoundException, IOException {
 	final Path inRoot = new File(args[0]).toPath();
 	final Path outRoot = new File(args[1]).toPath();
+	tagger = new Tagger();
+	String modelFile = "/cmu/arktweetnlp/model.20120919";
+	if (args.length > 2) {
+		modelFile = args[2];
+	}
+	tagger.loadModel(modelFile);
     Files.walkFileTree(inRoot, new SimpleFileVisitor<Path>() {
     	@Override
     	public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
