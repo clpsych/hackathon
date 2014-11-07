@@ -3,8 +3,8 @@ Tokenizer
 
 Compile:
 
-* Install gradle
-* run `gradle fatJar`
+* Install [gradle](http://www.gradle.org/)
+* run `gradle fatJar` in this directory
 
 Run:
 
