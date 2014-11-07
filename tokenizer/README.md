@@ -9,6 +9,7 @@ Compile:
 Run:
 
 * run `java -jar build/libs/tokenizer-all.jar <input_dir> <output_dir>`
+* If that doesn't work, try running `java -cp build/libs/tokenizer-all.jar io.github.clpsych.hackathon.tokenizer.Tokenizer <input_Dir> <output_dir>`
 
 Results:
 
