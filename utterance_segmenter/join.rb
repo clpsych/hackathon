@@ -20,6 +20,8 @@ while ids.gets
     head = line[6].to_i
     if head > 0
       edges << line[0].to_i << head
+    elsif head == 0
+      edges << line[0].to_i << line[0].to_i
     end
   end
   g = RGL::DirectedAdjacencyGraph[*edges]
