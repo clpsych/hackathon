@@ -10,6 +10,7 @@ Tweet Object fields
     - in_reply_to_status_id_str
     - in_reply_to_user_id
     - in_reply_to_user_id_str
+    - retweeted_status
     - text
     - user
 
@@ -31,7 +32,6 @@ Tweet Object fields
     - filter_level
     - geo
     - place
-    - retweeted_status
     - withheld_copyright
     - withheld_in_countries
     - withheld_scope
